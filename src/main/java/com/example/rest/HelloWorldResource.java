@@ -1,6 +1,7 @@
 package com.example.rest;
 
 import javax.inject.Inject;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -18,7 +19,7 @@ public class HelloWorldResource {
 	@GET
 	@Path("sayhello/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String sayHello(@PathParam("name") String name) {
+	public String sayHello(@PathParam("name") @Pattern(regexp="[a-zA-z ']*") String name) {
 		return helloService.greetPerson(name);
 	}
 	
