@@ -28,7 +28,7 @@ public class AppStartupService {
 		
 		Member m2 = new Member();
 		m2.setName("Test2");
-		m2.setAge(20);
+		m2.setAge(25);
 		memberRepo.addMember(m2);
 		
 		memberRepo.findAll().forEach(System.out::println);

@@ -2,6 +2,7 @@ package com.example.repository;
 
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import javax.transaction.Transactional;
 import com.example.entity.Member;
 
 @Transactional
+@ApplicationScoped
 public class MemberRepository {
 
 	@PersistenceContext(unitName="test")
@@ -28,7 +30,9 @@ public class MemberRepository {
 	}
 	
 	public void updateMember(Member m) {
-		em.merge(em.find(Member.class, m.getId()));
+		Member m1 = em.find(Member.class, m.getId());
+		m1.setAge(m.getAge());
+		m1.setName(m.getName());
 	}
 	
 	public List<Member> findAll() {
