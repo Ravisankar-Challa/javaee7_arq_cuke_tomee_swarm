@@ -19,7 +19,7 @@ public class HelloWorldResource {
 	@GET
 	@Path("sayhello/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String sayHello(@PathParam("name") @Pattern(regexp="[a-zA-z ']*") String name) {
+	public String sayHello(@PathParam("name") @Pattern(regexp="[a-zA-z ']*", message="Allows only characters") String name) {
 		return helloService.greetPerson(name);
 	}
 	
