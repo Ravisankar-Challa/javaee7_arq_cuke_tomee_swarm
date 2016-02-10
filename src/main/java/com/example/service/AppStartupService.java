@@ -8,6 +8,7 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 
 import com.example.entity.Member;
+import com.example.exception.ApplicationException;
 import com.example.repository.MemberRepository;
 
 @Startup
@@ -20,7 +21,7 @@ public class AppStartupService {
 	private MemberRepository memberRepo;
 	
 	@PostConstruct
-	public void init() {
+	public void init() throws ApplicationException {
 		Member m1 = new Member();
 		m1.setName("Test1");
 		m1.setAge(20);

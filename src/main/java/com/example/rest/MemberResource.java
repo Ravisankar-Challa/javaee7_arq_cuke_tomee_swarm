@@ -18,7 +18,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import com.example.entity.Member;
-import com.example.repository.MemberRepository;
+import com.example.exception.ApplicationException;
+import com.example.service.MemberService;
 
 @Path("/")
 public class MemberResource {
@@ -26,35 +27,35 @@ public class MemberResource {
 	private static final Logger LOG = Logger.getLogger(MemberResource.class.getName());
 
 	@Inject
-	private MemberRepository memberRepo;
+	private MemberService memberService;
 	
 	@GET
 	@Path("member/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Member findMember(@PathParam("id") Long id) {
-		return memberRepo.findMember(id);
+	public Member findMember(@PathParam("id") Long id) throws ApplicationException {
+		return memberService.findMember(id);
 	}
 	
 	@POST
 	@Path("member")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addMember(@Context UriInfo uriInfo, Member member) {
-		Member m = memberRepo.addMember(member);
+	public Response addMember(@Context UriInfo uriInfo, Member member) throws ApplicationException {
+		Member 	m = memberService.addMember(member);
 		return Response.created(uriInfo.getAbsolutePathBuilder().path(String.valueOf(m.getId())).build("")).build();
 	}
 	
 	@PUT
 	@Path("member")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response updateMember(Member member) {
-		memberRepo.updateMember(member);
+	public Response updateMember(Member member) throws ApplicationException {
+		memberService.updateMember(member);
 		return Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("member/{id}")
-	public Response removeMember(@PathParam("id") Long id) {
-		memberRepo.removeMember(id);
+	public Response removeMember(@PathParam("id") Long id) throws ApplicationException {
+		memberService.removeMember(id);
 		return Response.noContent().build();
 	}
 	
@@ -62,6 +63,6 @@ public class MemberResource {
 	@Path("members")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Member> findAll() {
-		return memberRepo.findAll();
+		return memberService.findAll();
 	}
 }
