@@ -19,7 +19,7 @@ public class Member {
 	private Long id;
 	
 	@NotNull
-	@Size(max=256)
+	@Size(max=32)
 	@Column(name="MEMBER_NAME", length=32, nullable=false)
 	private String name;
 	
