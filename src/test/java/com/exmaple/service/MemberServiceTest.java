@@ -20,10 +20,10 @@ import com.example.exception.ApplicationException;
 import com.example.repository.MemberRepository;
 import com.example.service.MemberService;
 
-//@RunWith(MockitoJUnitRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 public class MemberServiceTest {
 	
-	/*@InjectMocks
+	@InjectMocks
 	MemberService memberService;
 	
 	@Mock
@@ -44,6 +44,6 @@ public class MemberServiceTest {
 			assertThat(ae.getCode(), is(500));
 			assertThat(ae.getErrorMessage(), is(INTERNAL_SYSTEM_ERROR));
 		}
-	}*/
+	}
 	
 }
