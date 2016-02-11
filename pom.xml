@@ -434,5 +434,22 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>tomee</id>
+			<build>
+		     	<finalName>test</finalName>
+		     		<plugins>
+			            <plugin>
+					        <groupId>org.apache.tomee.maven</groupId>
+					        <artifactId>tomee-maven-plugin</artifactId>
+					        <version>7.0.0-M1</version>
+					        <configuration>
+					          <tomeeVersion>7.0.0-M1</tomeeVersion>
+					          <tomeeClassifier>webprofile</tomeeClassifier>
+					        </configuration>
+					      </plugin>
+			        </plugins>
+		    </build>
+		</profile>
 	</profiles>
 </project>
