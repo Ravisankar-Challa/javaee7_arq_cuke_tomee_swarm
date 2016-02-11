@@ -1,0 +1,7 @@
+member_table:
+  - id : 100
+    member_name: Scott
+    member_age: 21
+  - id : 101
+    member_name: Test2
+    member_age: 25
