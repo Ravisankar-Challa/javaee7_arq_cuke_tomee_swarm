@@ -30,13 +30,13 @@ public class MemberServiceTest {
 	MemberRepository memberRepository;
 	
 	@Test(expected=ApplicationException.class)
-	public void should_throw_an_application_exception_when_member_not_found_in_db() throws ApplicationException {
+	public void should_throw_an_application_error_when_insert_fails() throws ApplicationException {
 		when(memberRepository.addMember(any(Member.class))).thenThrow(PersistenceException.class);
 		memberService.addMember(new Member());
 	}
 	
 	@Test
-	public void should_throw_an_internal_system_exception_when_insert_fails() {
+	public void should_throw_an_application_error_of_type_internal_system_exception_when_insert_fails() {
 		try {
 			when(memberRepository.addMember(any(Member.class))).thenThrow(PersistenceException.class);
 			memberService.addMember(new Member());
