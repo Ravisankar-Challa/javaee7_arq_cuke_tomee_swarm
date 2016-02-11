@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -14,7 +15,8 @@ import javax.validation.constraints.Size;
 public class Member {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	@SequenceGenerator(name="SEQ_GEN", allocationSize=1, initialValue=1, sequenceName="MEM_SEQ_GEN")
 	private Long id;
 	
 	@NotNull

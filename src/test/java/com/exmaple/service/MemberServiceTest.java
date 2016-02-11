@@ -1,4 +1,4 @@
-package com.exmaple;
+package com.exmaple.service;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;

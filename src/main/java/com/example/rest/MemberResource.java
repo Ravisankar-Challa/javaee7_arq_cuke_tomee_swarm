@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.inject.Inject;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -32,16 +33,17 @@ public class MemberResource {
 	@GET
 	@Path("member/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Member findMember(@PathParam("id") Long id) throws ApplicationException {
-		return memberService.findMember(id);
+	public Member findMember(@PathParam("id") @Pattern(regexp="[0-9]*", message="Member Id Should Be Number") String id) throws ApplicationException {
+		return memberService.findMember(Long.valueOf(id));
 	}
 	
 	@POST
 	@Path("member")
 	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addMember(@Context UriInfo uriInfo, Member member) throws ApplicationException {
 		Member 	m = memberService.addMember(member);
-		return Response.created(uriInfo.getAbsolutePathBuilder().path(String.valueOf(m.getId())).build("")).build();
+		return Response.created(uriInfo.getAbsolutePathBuilder().path(String.valueOf(m.getId())).build()).build();
 	}
 	
 	@PUT
@@ -49,14 +51,14 @@ public class MemberResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMember(Member member) throws ApplicationException {
 		memberService.updateMember(member);
-		return Response.noContent().build();
+		return Response.ok().build();
 	}
 	
 	@DELETE
 	@Path("member/{id}")
 	public Response removeMember(@PathParam("id") Long id) throws ApplicationException {
 		memberService.removeMember(id);
-		return Response.noContent().build();
+		return Response.ok().build();
 	}
 	
 	@GET

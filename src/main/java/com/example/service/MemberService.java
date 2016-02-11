@@ -54,7 +54,7 @@ public class MemberService {
 	}
 	
 	public Member findMember(Long id) throws ApplicationException {
-		Member m = memberRepo.findMember(id);
+		Member m = memberRepo.findMemberById(id);
 		if(m == null) {
 			LOG.severe("Member with "+ id +" doesn't exists");
 			throw new ApplicationException(404, MEMBER_NOT_FOUND);
@@ -67,7 +67,8 @@ public class MemberService {
 			memberRepo.updateMember(m);
 		}catch(Exception e) {
 			LOG.log(Level.SEVERE, e.getMessage(), e);
-			if(e.getCause().getCause() instanceof ConstraintViolationException) {
+			if(e.getCause() !=null && e.getCause().getCause() !=null 
+					&& e.getCause().getCause() instanceof ConstraintViolationException) {
 				throw new ApplicationException(400, INVALID_INPUT);
 			}
 			else {
