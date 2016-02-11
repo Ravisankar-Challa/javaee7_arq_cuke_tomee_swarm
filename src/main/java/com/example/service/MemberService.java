@@ -30,7 +30,8 @@ public class MemberService {
 		} 
 		catch(Exception e) {
 			LOG.log(Level.SEVERE, e.getMessage(), e);
-			if(e.getCause().getCause() instanceof ConstraintViolationException) {
+			if(e.getCause() !=null && e.getCause().getCause() !=null 
+					&& e.getCause().getCause() instanceof ConstraintViolationException) {
 				throw new ApplicationException(400, INVALID_INPUT);
 			}
 			else {
