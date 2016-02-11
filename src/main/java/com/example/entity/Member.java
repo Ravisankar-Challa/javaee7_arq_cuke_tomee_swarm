@@ -18,7 +18,7 @@ public class Member {
 	private Long id;
 	
 	@NotNull
-	@Size(max=32)
+	@Size(max=32, message="Name shouldn't be more than 32 characters")
 	@Column(name="MEMBER_NAME", length=32, nullable=false)
 	private String name;
 	
