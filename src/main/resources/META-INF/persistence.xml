@@ -10,8 +10,15 @@
       	<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
       	<property name="javax.persistence.schema-generation.create-source" value="metadata"/>
       	<property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
-      	<!-- Hibernate -->
-      	<property name="show_sql" value="true"/>
+      	 <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop" /> -->
+		  <!-- does not create foreign keys, creates schema and deletes content of a database
+		       (deleteTableContents - foreign keys are created twice???), use dropDB instead -->
+		  <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(foreignKeys=true,schemaAction='dropDB,add')"/>
+		  <!--Resolves the problem with foreign key integrity - joined entities are persisted sometimes in wrong order??? (verify it)-->
+		  <property name="openjpa.jdbc.SchemaFactory" value="native(foreignKeys=true)" />
+		  <!--Create foreign keys-->
+		  <property name="openjpa.jdbc.MappingDefaults" value="ForeignKeyDeleteAction=restrict, JoinForeignKeyDeleteAction=restrict"/>
+		  <property name="openjpa.Log" value="DefaultLevel=INFO,SQL=TRACE" />
       </properties>
    </persistence-unit>
 </persistence>
