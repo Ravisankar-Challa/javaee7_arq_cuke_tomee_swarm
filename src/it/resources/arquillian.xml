@@ -27,12 +27,9 @@
 	   <property name="persistenceEventsActivated">true</property>
    </extension>
    
-   <!-- 
    <extension qualifier="jacoco">
-   		Ignore asm library as it is causing trouble with jacoco extension
 	   <property name="excludes">*.class</property>
-	   <property name="includes">com.qantas.*</property>
+	   <property name="includes">com.example.*</property>
    </extension> 
-   -->
    
 </arquillian>
