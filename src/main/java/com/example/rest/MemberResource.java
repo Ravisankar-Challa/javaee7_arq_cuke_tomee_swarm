@@ -51,14 +51,14 @@ public class MemberResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateMember(Member member) throws ApplicationException {
 		memberService.updateMember(member);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("member/{id}")
 	public Response removeMember(@PathParam("id") Long id) throws ApplicationException {
 		memberService.removeMember(id);
-		return Response.ok().build();
+		return Response.noContent().build();
 	}
 	
 	@GET

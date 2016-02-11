@@ -19,7 +19,6 @@ import javax.ws.rs.core.Response;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
-import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -87,7 +86,7 @@ public class MemberResourceIT {
 													  		"	  \"age\" : 30" + 
 													  		"    }", 
 											MediaType.APPLICATION_JSON));
-		assertEquals(200, response.getStatus());
+		assertEquals(204, response.getStatus());
 		
 		Member m = ClientBuilder.newClient().target(baseURL.toString())
 								.path("api/member/2")
@@ -106,7 +105,7 @@ public class MemberResourceIT {
 				  .resolveTemplate("id", 2)
 				  .request()
 				  .delete();
-		assertEquals(200, response.getStatus());
+		assertEquals(204, response.getStatus());
 	}
 	
 	@Test
