@@ -92,7 +92,20 @@
 			<scope>test</scope>
 		</dependency>
 		
-	
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>org.jacoco.core</artifactId>
+			<version>${version.jacoco}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-jacoco</artifactId>
+			<version>${version.arquillian_jacoco}</version>
+			<scope>test</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>com.github.cukespace</groupId>
 			<artifactId>cukespace-core</artifactId>
@@ -108,20 +121,6 @@
 			      <artifactId>arquillian-junit-container</artifactId>
 			    </exclusion>
 			  </exclusions>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>org.jacoco.core</artifactId>
-			<version>${version.jacoco}</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-jacoco</artifactId>
-			<version>${version.arquillian_jacoco}</version>
-			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
@@ -288,7 +287,7 @@
 							<encoding>${project.build.sourceEncoding}</encoding>
 							<systemPropertyVariables>
 								<arquillian.launch>jbosseap_managed</arquillian.launch>
-								<jboss.home>${project.basedir}/target/wildlfy-{verison.app.server}</jboss.home>
+								<jboss.home>${project.basedir}/target/wildfly-${verison.app.server}</jboss.home>
 								<port-offset>-Djboss.socket.binding.port-offset=86</port-offset>
 								<management.port>10076</management.port>
 							</systemPropertyVariables>
