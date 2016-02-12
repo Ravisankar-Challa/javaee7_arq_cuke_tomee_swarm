@@ -446,6 +446,7 @@
 					        <configuration>
 					          <tomeeVersion>7.0.0-M1</tomeeVersion>
 					          <tomeeClassifier>webprofile</tomeeClassifier>
+					          <context>ROOT</context>
 					        </configuration>
 					      </plugin>
 			        </plugins>
