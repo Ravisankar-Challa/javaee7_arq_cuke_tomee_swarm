@@ -3,6 +3,8 @@ package com.example.rest;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.cache.annotation.CacheKey;
+import javax.cache.annotation.CacheResult;
 import javax.inject.Inject;
 import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
@@ -33,7 +35,9 @@ public class MemberResource {
 	@GET
 	@Path("member/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Member findMember(@PathParam("id") @Pattern(regexp="[0-9]*", message="Member Id Should Be Number") String id) throws ApplicationException {
+	//@CacheResult(cacheName="testCache")
+	public Member findMember(@PathParam("id") @Pattern(regexp="[0-9]*", message="Member Id Should Be Number") @CacheKey String id) throws ApplicationException {
+		LOG.info(String.format("Received request for member %s", id));
 		return memberService.findMember(Long.valueOf(id));
 	}
 	
