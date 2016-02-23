@@ -8,6 +8,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.tomitribe.sabot.Config;
+
 import com.example.service.HelloService;
 
 @Path("/")
@@ -16,11 +18,19 @@ public class HelloWorldResource {
 	@Inject
 	private HelloService helloService;
 	
+	@Inject
+	@Config("name")
+	private String env;
+	
+	@Inject
+	@Config("url")
+	private String endpointUrl;
+	
 	@GET
 	@Path("sayhello/{name}")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sayHello(@PathParam("name") @Pattern(regexp="[a-zA-z ']*", message="Allows only characters") String name) {
-		return helloService.greetPerson(name);
+		return String.format("%s and Environment is : %s and url is : %s",helloService.greetPerson(name), env, endpointUrl);
 	}
 	
 }

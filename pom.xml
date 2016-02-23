@@ -34,6 +34,7 @@
 		<version.wildfly.arquillian.adapter>8.2.1.Final</version.wildfly.arquillian.adapter>
 		<verison.app.server>10.0.0.Final</verison.app.server>
 		<version.json_unit>1.9.0</version.json_unit>
+		<version.sabot>0.9</version.sabot>
 		<swarm.version>1.0.0.Alpha6</swarm.version>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -76,6 +77,12 @@
 			<artifactId>javaee-api</artifactId>
 			<scope>provided</scope>
 			<version>${version.javaee}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.tomitribe</groupId>
+			<artifactId>sabot</artifactId>
+			<version>${version.sabot}</version>
 		</dependency>
 		
 		<dependency>
@@ -448,6 +455,10 @@
 					          <tomeeVersion>7.0.0-M1</tomeeVersion>
 					          <tomeeClassifier>webprofile</tomeeClassifier>
 					          <context>ROOT</context>
+					          <systemVariables>
+							  	<org.tomitribe.sabot.environment>${environment}</org.tomitribe.sabot.environment>
+							  	<!-- java  -DadditionalSystemProperties="-Dorg.tomitribe.sabot.environment=uat" -jar test-exec.jar -->
+							  </systemVariables>
 					        </configuration>
 					      </plugin>
 			        </plugins>
