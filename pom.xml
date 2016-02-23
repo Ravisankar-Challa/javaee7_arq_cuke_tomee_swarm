@@ -470,6 +470,7 @@
 								  <DefaultDataSource.password>${jdbc.password}</DefaultDataSource.password>
 								 <!--  <DefaultDataSource.passwordCipher>Static3DES</DefaultDataSource.passwordCipher> -->
 							  </systemVariables>
+							 <!--  <tomeeHttpPort>${http.port}</tomeeHttpPort> -->
 					        </configuration>
 					      </plugin>
 			        </plugins>
