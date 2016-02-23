@@ -35,6 +35,8 @@
 		<verison.app.server>10.0.0.Final</verison.app.server>
 		<version.json_unit>1.9.0</version.json_unit>
 		<version.sabot>0.9</version.sabot>
+		<version.h2>1.4.191</version.h2>
+		<version.oracle.driver>7</version.oracle.driver>
 		<swarm.version>1.0.0.Alpha6</swarm.version>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -455,9 +457,18 @@
 					          <tomeeVersion>7.0.0-M1</tomeeVersion>
 					          <tomeeClassifier>webprofile</tomeeClassifier>
 					          <context>ROOT</context>
+					          <libs>
+							      <lib>com.h2database:h2:${version.h2}</lib>
+								  <lib>oracle.jdbc:ojdbc:${version.oracle.driver}</lib>
+							  </libs>
 					          <systemVariables>
-							  	<org.tomitribe.sabot.environment>${environment}</org.tomitribe.sabot.environment>
-							  	<!-- java  -DadditionalSystemProperties="-Dorg.tomitribe.sabot.environment=uat" -jar test-exec.jar -->
+								  <org.tomitribe.sabot.environment>${environment}</org.tomitribe.sabot.environment>
+								  <DefaultDataSource>new://Resource?type=javax.sql.DataSource</DefaultDataSource>
+								  <DefaultDataSource.jdbcDriver>${jdbc.driver}</DefaultDataSource.jdbcDriver>
+								  <DefaultDataSource.jdbcUrl>${jdbc.url}</DefaultDataSource.jdbcUrl>
+								  <DefaultDataSource.userName>${jdbc.username}</DefaultDataSource.userName>
+								  <DefaultDataSource.password>${jdbc.password}</DefaultDataSource.password>
+								 <!--  <DefaultDataSource.passwordCipher>Static3DES</DefaultDataSource.passwordCipher> -->
 							  </systemVariables>
 					        </configuration>
 					      </plugin>
